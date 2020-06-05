@@ -1,7 +1,7 @@
 {
   "name": "statsd-rabbitmq-backend",
   "version": "1.0.0",
-  "description": "A pluggable backend for StatsD to publish stats to RabbitMQ",
+  "description": "A pluggable backend for StatsD to publish metrics to RabbitMQ",
   "main": "statsd-rabbitmq-backend/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
