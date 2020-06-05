@@ -1,5 +1,5 @@
 <p align="center">
-    <p align="center">A pluggable backend for StatsD to publish stats to RabbitMQ</p>
+    <p align="center">A Pluggable backend for StatsD to publish stats to RabbitMQ</p>
 </p>
 
 <p align="center">
@@ -9,9 +9,30 @@
 
 ## Installation
 
+Create config file `config.js` like the following
+
+```js
+{
+  graphitePort: 2003
+, graphiteHost: "graphite.example.com"
+, port: 8125
+, backends: [ "./backends/graphite" ]
+}
 ```
-#
+
+Run `statsd` daemon with that config file
+
 ```
+$ git clone https://github.com/statsd/statsd.git
+$ node stats.js /path/to/config.js
+```
+
+Start sending metrics
+
+```
+$ echo "foo:1|c" | nc -u -w0 127.0.0.1 8125
+```
+
 
 ## Versioning
 
