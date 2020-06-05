@@ -1,7 +1,7 @@
 <p align="center">
     <img src="https://raw.githubusercontent.com/clivern/statsd-rabbitmq-backend/master/assets/img/chart.png" width="700" />
 </p>
-<p align="left">A Pluggable backend for <a href="https://github.com/statsd/statsd">StatsD</a> to publish metrics to RabbitMQ. So instead of polling our data store for changes on metrics, We will get notified when there is a change through RabbitMQ.</p>
+<p align="left">A Pluggable backend for <a href="https://github.com/statsd/statsd">StatsD</a> to publish metrics to RabbitMQ. So instead of polling our data store for changes in metrics, We will get notified when there is a change through RabbitMQ.</p>
 
 ## Installation
 
