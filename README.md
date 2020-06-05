@@ -1,9 +1,10 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/clivern/statsd-rabbitmq-backend/master/assets/img/chart.png" />
+    <img src="https://raw.githubusercontent.com/clivern/statsd-rabbitmq-backend/master/assets/img/chart.png" width="700" />
 </p>
 <p align="center">
     <p align="center">A Pluggable backend for StatsD to publish metrics to RabbitMQ</p>
 </p>
+<br/>
 
 ## Installation
 
