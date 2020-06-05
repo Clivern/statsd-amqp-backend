@@ -1,0 +1,27 @@
+{
+  "name": "statsd-rabbitmq-backend",
+  "version": "1.0.0",
+  "description": "A pluggable backend for StatsD to publish stats to RabbitMQ",
+  "main": "statsd-rabbitmq-backend/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "statsd",
+    "clivern",
+    "statsd-rabbitmq-backend"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Clivern/statsd-rabbitmq-backend.git"
+  },
+  "author": "Clivern",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Clivern/statsd-rabbitmq-backend/issues"
+  },
+  "homepage": "https://github.com/Clivern/statsd-rabbitmq-backend#readme",
+  "dependencies": {
+    "amqplib": "^0.5.6"
+  }
+}
