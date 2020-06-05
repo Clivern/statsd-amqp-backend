@@ -1,5 +1,4 @@
 <p align="center">
-    <h3 align="center">StatsD RabbitMQ Backend</h3>
     <p align="center">A pluggable backend for StatsD to publish stats to RabbitMQ</p>
 </p>
 
