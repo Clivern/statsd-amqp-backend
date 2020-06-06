@@ -18,7 +18,7 @@
  */
 var util = require('util');
 
-function ConsoleBackend(startupTime, config, emitter) {
+function RabbitmqBackend(startupTime, config, emitter) {
 	var self = this;
 	this.lastFlush = startupTime;
 	this.lastException = startupTime;
@@ -33,7 +33,7 @@ function ConsoleBackend(startupTime, config, emitter) {
 	});
 }
 
-ConsoleBackend.prototype.flush = function(timestamp, metrics) {
+RabbitmqBackend.prototype.flush = function(timestamp, metrics) {
 	console.log('Flushing stats at ', new Date(timestamp * 1000).toString());
 
 	var out = {
@@ -63,13 +63,13 @@ ConsoleBackend.prototype.flush = function(timestamp, metrics) {
 
 };
 
-ConsoleBackend.prototype.status = function(write) {
+RabbitmqBackend.prototype.status = function(write) {
 	['lastFlush', 'lastException'].forEach(function(key) {
 		write(null, 'console', key, this[key]);
 	}, this);
 };
 
 exports.init = function(startupTime, config, events) {
-	var instance = new ConsoleBackend(startupTime, config, events);
+	var instance = new RabbitmqBackend(startupTime, config, events);
 	return true;
 };
