@@ -23,6 +23,9 @@ Run `statsd` daemon with that config file & the backend
 ```
 $ git clone https://github.com/statsd/statsd.git
 $ git clone https://github.com/uptimedog/statsd-rabbitmq-backend.git statsd/backends/statsd-rabbitmq-backend
+
+$ cd statsd/backends/statsd-rabbitmq-backend
+$ npm install
 $ node stats.js /path/to/config.js
 ```
 
