@@ -5,7 +5,18 @@
 
 ## Installation
 
-Create config file `config.js` like the following
+Clone `statsd` and our new backend
+
+```
+$ git clone https://github.com/statsd/statsd.git
+$ git clone https://github.com/uptimedog/statsd-rabbitmq-backend.git statsd/backends/statsd-rabbitmq-backend
+
+$ cd statsd/backends/statsd-rabbitmq-backend
+$ npm install
+$ cd ../..
+```
+
+Create a config file `config.js` like the following to use rabbitmq backend. More options will be supported later
 
 ```js
 {
@@ -18,15 +29,10 @@ Create config file `config.js` like the following
 }
 ```
 
-Run `statsd` daemon with that config file & the backend
+Run `statsd` daemon with that config file
 
 ```
-$ git clone https://github.com/statsd/statsd.git
-$ git clone https://github.com/uptimedog/statsd-rabbitmq-backend.git statsd/backends/statsd-rabbitmq-backend
-
-$ cd statsd/backends/statsd-rabbitmq-backend
-$ npm install
-$ node stats.js /path/to/config.js
+$ node stats.js config.js
 ```
 
 Start sending metrics
