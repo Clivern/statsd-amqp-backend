@@ -8,21 +8,20 @@
  *
  * This backend supports the following config options:
  *
- *   amqp.host: Hostname of RabbitMQ server.
- *   amqp.port: Port to contact RabbitMQ server at.
- *   amqp.login: Login for the RabbitMQ server.
- *   amqp.password: Password for the RabbitMQ server.
- *   .......
+ *   amqp.connection: RabbitMQ Connection eg. amqp://guest:guest@localhost:5672
+ *   amqp.queue: RabbitMQ Exchange eg. metrics
  *
- * @TODO update this file with RabbitMQ implementation
  */
 var util = require('util');
+
 
 function RabbitmqBackend(startupTime, config, emitter) {
 	var self = this;
 	this.lastFlush = startupTime;
 	this.lastException = startupTime;
-	this.config = config.console || {};
+	this.config = config;
+
+ 	this.connection = require('amqplib').connect(this.config.amqp.connection);
 
 	// attach
 	emitter.on('flush', function(timestamp, metrics) {
@@ -52,15 +51,43 @@ RabbitmqBackend.prototype.flush = function(timestamp, metrics) {
 		pctThreshold: metrics.pctThreshold
 	};
 
-	if (this.config.prettyprint) {
-		console.log(util.inspect(out, {
-			depth: 5,
-			colors: true
-		}));
-	} else {
-		console.log(out);
+	var send = false;
+
+	var metric = {
+		"counters": {}
+	};
+
+	for (var key in out.counters) {
+		if (key.startsWith("statsd.") || out.counters[key] == 0) {
+			continue;
+		}
+		send = true;
+
+		metric.counters[key] = out.counters[key];
 	}
 
+	if (!send) {
+		console.log('No new metrics to flush');
+		return;
+	}
+
+	var queue = this.config.amqp.queue;
+	var msg = JSON.stringify(metric);
+
+	console.log('Sending metrics ', msg);
+
+	// Publish
+	this.connection.then(function(conn) {
+		if (this.ch) {
+			return this.ch;
+		}
+		this.ch = conn.createChannel();
+		return this.ch;
+	}).then(function(ch) {
+	  	return ch.assertQueue(queue).then(function(ok) {
+	    	return ch.sendToQueue(queue, Buffer.from(msg));
+	  	});
+	}).catch(console.warn);
 };
 
 RabbitmqBackend.prototype.status = function(write) {

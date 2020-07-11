@@ -9,17 +9,20 @@ Create config file `config.js` like the following
 
 ```js
 {
-  graphitePort: 2003
-, graphiteHost: "graphite.example.com"
-, port: 8125
-, backends: [ "./backends/graphite" ]
+  amqp: {
+      connection: "amqp://guest:guest@localhost:5672",
+      queue: "metrics"
+  },
+
+  backends: [ "./backends/statsd-rabbitmq-backend" ]
 }
 ```
 
-Run `statsd` daemon with that config file
+Run `statsd` daemon with that config file & the backend
 
 ```
 $ git clone https://github.com/statsd/statsd.git
+$ git clone https://github.com/uptimedog/statsd-rabbitmq-backend.git statsd/backends/statsd-rabbitmq-backend
 $ node stats.js /path/to/config.js
 ```
 
@@ -27,6 +30,28 @@ Start sending metrics
 
 ```
 $ echo "foo:1|c" | nc -u -w0 127.0.0.1 8125
+```
+
+To run a sample consumer for testing
+
+```javascript
+var q = 'metrics';
+
+var open = require('amqplib').connect("amqp://guest:guest@localhost:5672");
+
+// Consumer
+open.then(function(conn) {
+    return conn.createChannel();
+}).then(function(ch) {
+    return ch.assertQueue(q).then(function(ok) {
+        return ch.consume(q, function(msg) {
+            if (msg !== null) {
+                console.log(msg.content.toString());
+                ch.ack(msg);
+            }
+        });
+    });
+}).catch(console.warn);
 ```
 
 
