@@ -4,7 +4,7 @@
  * To enable this backend, include 'statsd-rabbitmq-backend' in the backends
  * configuration array:
  *
- *   backends: ['statsd-rabbitmq-backend']
+ *   backends: ['./backends/statsd-rabbitmq-backend']
  *
  * This backend supports the following config options:
  *

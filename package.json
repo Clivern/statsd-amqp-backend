@@ -13,14 +13,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Clivern/statsd-rabbitmq-backend.git"
+    "url": "git+https://github.com/uptimedog/statsd-rabbitmq-backend.git"
   },
-  "author": "Clivern",
+  "author": "uptimedog",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Clivern/statsd-rabbitmq-backend/issues"
+    "url": "https://github.com/uptimedog/statsd-rabbitmq-backend/issues"
   },
-  "homepage": "https://github.com/Clivern/statsd-rabbitmq-backend#readme",
+  "homepage": "https://github.com/uptimedog/statsd-rabbitmq-backend#readme",
   "dependencies": {
     "amqplib": "^0.5.6"
   },

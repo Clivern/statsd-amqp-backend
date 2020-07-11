@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/clivern/statsd-rabbitmq-backend/master/assets/img/chart.png" width="700" />
+    <img src="https://raw.githubusercontent.com/uptimedog/statsd-rabbitmq-backend/master/assets/img/chart.png" width="700" />
 </p>
 <p align="left">A Pluggable backend for <a href="https://github.com/statsd/statsd">StatsD</a> to publish metrics to RabbitMQ. So instead of polling our data store for changes in metrics, We will get notified when there is a change through RabbitMQ.</p>
 
@@ -68,12 +68,12 @@ open.then(function(conn) {
 
 For transparency into our release cycle and in striving to maintain backward compatibility, statsd-rabbitmq-backend is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
 
-See the [Releases section of our GitHub project](https://github.com/clivern/statsd-rabbitmq-backend/releases) for changelogs for each release version of statsd-rabbitmq-backend. It contains summaries of the most noteworthy changes made in each release.
+See the [Releases section of our GitHub project](https://github.com/uptimedog/statsd-rabbitmq-backend/releases) for changelogs for each release version of statsd-rabbitmq-backend. It contains summaries of the most noteworthy changes made in each release.
 
 
 ## Bug tracker
 
-If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/clivern/statsd-rabbitmq-backend/issues
+If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/uptimedog/statsd-rabbitmq-backend/issues
 
 
 ## Security Issues
@@ -88,6 +88,6 @@ We are an open source, community-driven project so please feel free to join us. 
 
 ## License
 
-© 2020, clivern. Released under [MIT License](https://opensource.org/licenses/mit-license.php).
+© 2020, Uptimedog. Released under [MIT License](https://opensource.org/licenses/mit-license.php).
 
-**statsd-rabbitmq-backend** is authored and maintained by [@clivern](http://github.com/clivern).
+**statsd-rabbitmq-backend** is authored and maintained by [@Uptimedog](http://github.com/uptimedog).
