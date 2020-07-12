@@ -21,7 +21,7 @@ function RabbitmqBackend(startupTime, config, emitter) {
 	this.lastException = startupTime;
 	this.config = config;
 
- 	this.connection = require('amqplib').connect(this.config.amqp.connection);
+	this.connection = require('amqplib').connect(this.config.amqp.connection);
 
 	// attach
 	emitter.on('flush', function(timestamp, metrics) {
@@ -84,9 +84,10 @@ RabbitmqBackend.prototype.flush = function(timestamp, metrics) {
 		this.ch = conn.createChannel();
 		return this.ch;
 	}).then(function(ch) {
-	  	return ch.assertQueue(queue).then(function(ok) {
-	    	return ch.sendToQueue(queue, Buffer.from(msg));
-	  	});
+		return ch.assertQueue(queue).then(function(ok) {
+			console.log('Sent ', msg);
+			return ch.sendToQueue(queue, Buffer.from(msg));
+		});
 	}).catch(console.warn);
 };
 
