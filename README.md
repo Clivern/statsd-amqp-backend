@@ -12,7 +12,9 @@ Clone `statsd` and our new backend
 $ git clone https://github.com/statsd/statsd.git
 $ git clone https://github.com/uptimedog/statsd-rabbitmq-backend.git statsd/backends/statsd-rabbitmq-backend
 
-$ cd statsd/backends/statsd-rabbitmq-backend
+$ cd statsd
+$ npm install
+$ cd backends/statsd-rabbitmq-backend
 $ npm install
 $ cd ../..
 ```
@@ -23,7 +25,8 @@ Create a config file `config.js` like the following to use rabbitmq backend. Mor
 {
   amqp: {
       connection: "amqp://guest:guest@localhost:5672",
-      queue: "metrics"
+      queue: "metrics",
+      durable: false
   },
 
   backends: [ "./backends/statsd-rabbitmq-backend" ]
@@ -57,7 +60,7 @@ var open = require('amqplib').connect("amqp://guest:guest@localhost:5672");
 open.then(function(conn) {
     return conn.createChannel();
 }).then(function(ch) {
-    return ch.assertQueue(q).then(function(ok) {
+    return ch.assertQueue(q, {durable: false}).then(function(ok) {
         return ch.consume(q, function(msg) {
             if (msg !== null) {
                 console.log(msg.content.toString());
