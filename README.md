@@ -3,6 +3,7 @@
 </p>
 <p align="left">A Pluggable backend for <a href="https://github.com/statsd/statsd">StatsD</a> to publish metrics to RabbitMQ. So instead of polling our data store for changes in metrics, We will get notified when there is a change through RabbitMQ.</p>
 
+
 ## Installation
 
 Clone `statsd` and our new backend
@@ -43,6 +44,10 @@ $ echo "foo:1|c" | nc -u -w0 127.0.0.1 8125
 
 To run a sample consumer for testing
 
+```js
+$ npm install amqplib
+```
+
 ```javascript
 var q = 'metrics';
 
@@ -61,6 +66,10 @@ open.then(function(conn) {
         });
     });
 }).catch(console.warn);
+```
+
+```
+$ node consumer.js
 ```
 
 
