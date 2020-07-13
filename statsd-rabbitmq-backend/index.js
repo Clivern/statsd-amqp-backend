@@ -72,6 +72,9 @@ RabbitmqBackend.prototype.flush = function(timestamp, metrics) {
 	var queue = this.config.amqp.queue;
 	var autoDelete = this.config.amqp.autoDelete;
 	var exclusive = this.config.amqp.exclusive;
+	var persistent = this.config.amqp.persistent;
+	var deliveryMode = this.config.amqp.deliveryMode;
+
 	var msg = JSON.stringify(metric);
 	var durable = this.config.amqp.durable;
 
@@ -87,7 +90,10 @@ RabbitmqBackend.prototype.flush = function(timestamp, metrics) {
 			});
 
 			return ok.then(function(_qok) {
-				ch.sendToQueue(queue, Buffer.from(msg));
+				ch.sendToQueue(queue, Buffer.from(msg), {
+					persistent: persistent,
+					deliveryMode: deliveryMode
+				});
 				console.log("Sent ", msg);
 				return ch.close();
 			});
