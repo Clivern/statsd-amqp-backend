@@ -70,6 +70,8 @@ RabbitmqBackend.prototype.flush = function(timestamp, metrics) {
 	}
 
 	var queue = this.config.amqp.queue;
+	var autoDelete = this.config.amqp.autoDelete;
+	var exclusive = this.config.amqp.exclusive;
 	var msg = JSON.stringify(metric);
 	var durable = this.config.amqp.durable;
 
@@ -78,7 +80,11 @@ RabbitmqBackend.prototype.flush = function(timestamp, metrics) {
 	// Publish
 	require('amqplib').connect(this.config.amqp.connection).then(function(conn) {
 		return conn.createChannel().then(function(ch) {
-			var ok = ch.assertQueue(queue, {durable: durable});
+			var ok = ch.assertQueue(queue, {
+				durable: durable,
+				autoDelete: autoDelete,
+				exclusive: exclusive
+			});
 
 			return ok.then(function(_qok) {
 				ch.sendToQueue(queue, Buffer.from(msg));
