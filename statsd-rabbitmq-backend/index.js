@@ -74,9 +74,8 @@ RabbitmqBackend.prototype.flush = function(timestamp, metrics) {
 	var exclusive = this.config.amqp.exclusive;
 	var persistent = this.config.amqp.persistent;
 	var deliveryMode = this.config.amqp.deliveryMode;
-
-	var msg = JSON.stringify(metric);
 	var durable = this.config.amqp.durable;
+	var msg = JSON.stringify(metric);
 
 	console.log('Attempt to send metrics ', msg);
 
