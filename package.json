@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/uptimedog/statsd-rabbitmq-backend#readme",
   "dependencies": {
-    "amqplib": "^0.5.6"
+    "amqplib": "^0.10.0"
   },
   "devDependencies": {
     "jshint": "2.11.1"
